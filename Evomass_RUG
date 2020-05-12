@@ -1,0 +1,1682 @@
+############################################
+####PACKAGES####
+
+library(shiny)
+library(ggplot2)
+library(rio)
+
+####IMPORT####
+
+dfRUG<-import("Data/evoRUG.xlsx")
+
+############################################
+####BMI: Front Row Comparisons [28-33] ####
+
+gg1 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=BMI),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Front Row"),], aes(x=Debut, y=BMI),colour="red", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Front Row"),], aes(x=Debut, y=BMI),se=F, colour="black")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Body Mass Index",
+         subtitle = "Position: Front Row")
+
+gg28 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=BMI),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Front Row"),], aes(x=Debut, y=BMI),colour="red", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Second Row"),], aes(x=Debut, y=BMI),colour="orange", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Front Row"),], aes(x=Debut, y=BMI),se=F, colour="firebrick")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Second Row"),], aes(x=Debut, y=BMI),se=F, colour="darkorange3")+
+    geom_smooth(data=dfRUG, aes(x=Debut, y=BMI),se=F, colour="slategray2")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Body Mass Index",
+         subtitle = "Positions: Front Row vs Second Row")
+
+gg29 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=BMI),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Front Row"),], aes(x=Debut, y=BMI),colour="red", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Back Row"),], aes(x=Debut, y=BMI),colour="gold", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Front Row"),], aes(x=Debut, y=BMI),se=F, colour="firebrick")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Back Row"),], aes(x=Debut, y=BMI),se=F, colour="yellow")+
+    geom_smooth(data=dfRUG, aes(x=Debut, y=BMI),se=F, colour="slategray2")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Body Mass Index",
+         subtitle = "Positions: Front Row vs Back Row")
+
+gg30 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=BMI),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Front Row"),], aes(x=Debut, y=BMI),colour="red", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Scrumhalf"),], aes(x=Debut, y=BMI),colour="green", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Front Row"),], aes(x=Debut, y=BMI),se=F, colour="firebrick")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Scrumhalf"),], aes(x=Debut, y=BMI),se=F, colour="lawngreen")+
+    geom_smooth(data=dfRUG, aes(x=Debut, y=BMI),se=F, colour="slategray2")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Body Mass Index",
+         subtitle = "Positions: Front Row vs Scrumhalf")
+
+gg31 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=BMI),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Front Row"),], aes(x=Debut, y=BMI),colour="red", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Flyhalf"),], aes(x=Debut, y=BMI),colour="blue", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Front Row"),], aes(x=Debut, y=BMI),se=F, colour="firebrick")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Flyhalf"),], aes(x=Debut, y=BMI),se=F, colour="deepskyblue")+
+    geom_smooth(data=dfRUG, aes(x=Debut, y=BMI),se=F, colour="slategray2")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Body Mass Index",
+         subtitle = "Positions: Front Row vs Flyhalf")
+
+gg32 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=BMI),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Front Row"),], aes(x=Debut, y=BMI),colour="red", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Centre"),], aes(x=Debut, y=BMI),colour="purple", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Front Row"),], aes(x=Debut, y=BMI),se=F, colour="firebrick")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Centre"),], aes(x=Debut, y=BMI),se=F, colour="magenta")+
+    geom_smooth(data=dfRUG, aes(x=Debut, y=BMI),se=F, colour="slategray2")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Body Mass Index",
+         subtitle = "Positions: Front Row vs Centre")
+
+gg33 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=BMI),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Front Row"),], aes(x=Debut, y=BMI),colour="red", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Outside Back"),], aes(x=Debut, y=BMI),colour="magenta", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Front Row"),], aes(x=Debut, y=BMI),se=F, colour="firebrick")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Outside Back"),], aes(x=Debut, y=BMI),se=F, colour="purple")+
+    geom_smooth(data=dfRUG, aes(x=Debut, y=BMI),se=F, colour="slategray2")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Body Mass Index",
+         subtitle = "Positions: Front Row vs Outside Back")
+
+####BMI: Second Row Comparisons [34-38] ####
+
+gg2 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=BMI),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Second Row"),], aes(x=Debut, y=BMI),colour="orange", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Second Row"),], aes(x=Debut, y=BMI),se=F, colour="black")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Body Mass Index",
+         subtitle = "Position: Second Row")
+
+gg34 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=BMI),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Second Row"),], aes(x=Debut, y=BMI),colour="orange", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Back Row"),], aes(x=Debut, y=BMI),colour="gold", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Second Row"),], aes(x=Debut, y=BMI),se=F, colour="darkorange3")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Back Row"),], aes(x=Debut, y=BMI),se=F, colour="yellow")+
+    geom_smooth(data=dfRUG, aes(x=Debut, y=BMI),se=F, colour="slategray2")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Body Mass Index",
+         subtitle = "Positions: Second Row vs Back Row")
+
+gg35 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=BMI),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Second Row"),], aes(x=Debut, y=BMI),colour="orange", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Scrumhalf"),], aes(x=Debut, y=BMI),colour="green", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Second Row"),], aes(x=Debut, y=BMI),se=F, colour="darkorange3")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Scrumhalf"),], aes(x=Debut, y=BMI),se=F, colour="lawngreen")+
+    geom_smooth(data=dfRUG, aes(x=Debut, y=BMI),se=F, colour="slategray2")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Body Mass Index",
+         subtitle = "Positions: Second Row vs Scrumhalf")
+
+gg36 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=BMI),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Second Row"),], aes(x=Debut, y=BMI),colour="orange", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Flyhalf"),], aes(x=Debut, y=BMI),colour="blue", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Second Row"),], aes(x=Debut, y=BMI),se=F, colour="darkorange3")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Flyhalf"),], aes(x=Debut, y=BMI),se=F, colour="deepskyblue")+
+    geom_smooth(data=dfRUG, aes(x=Debut, y=BMI),se=F, colour="slategray2")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Body Mass Index",
+         subtitle = "Positions: Second Row vs Flyhalf")
+
+gg37 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=BMI),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Second Row"),], aes(x=Debut, y=BMI),colour="orange", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Centre"),], aes(x=Debut, y=BMI),colour="purple", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Second Row"),], aes(x=Debut, y=BMI),se=F, colour="darkorange3")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Centre"),], aes(x=Debut, y=BMI),se=F, colour="magenta")+
+    geom_smooth(data=dfRUG, aes(x=Debut, y=BMI),se=F, colour="slategray2")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Body Mass Index",
+         subtitle = "Positions: Second Row vs Centre")
+
+gg38 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=BMI),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Second Row"),], aes(x=Debut, y=BMI),colour="orange", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Outside Back"),], aes(x=Debut, y=BMI),colour="magenta", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Second Row"),], aes(x=Debut, y=BMI),se=F, colour="darkorange3")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Outside Back"),], aes(x=Debut, y=BMI),se=F, colour="purple")+
+    geom_smooth(data=dfRUG, aes(x=Debut, y=BMI),se=F, colour="slategray2")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Body Mass Index",
+         subtitle = "Positions: Second Row vs Outside Back")
+
+
+####BMI: Back Row Comparisons [39-42] ####
+
+gg3 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=BMI),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Back Row"),], aes(x=Debut, y=BMI),colour="gold", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Back Row"),], aes(x=Debut, y=BMI),se=F, colour="black")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Body Mass Index",
+         subtitle = "Position: Back Row")
+
+gg39 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=BMI),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Back Row"),], aes(x=Debut, y=BMI),colour="gold", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Scrumhalf"),], aes(x=Debut, y=BMI),colour="green", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Back Row"),], aes(x=Debut, y=BMI),se=F, colour="yellow")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Scrumhalf"),], aes(x=Debut, y=BMI),se=F, colour="lawngreen")+
+    geom_smooth(data=dfRUG, aes(x=Debut, y=BMI),se=F, colour="slategray2")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Body Mass Index",
+         subtitle = "Positions: Back Row vs Scrumhalf")
+
+gg40 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=BMI),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Back Row"),], aes(x=Debut, y=BMI),colour="gold", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Flyhalf"),], aes(x=Debut, y=BMI),colour="blue", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Back Row"),], aes(x=Debut, y=BMI),se=F, colour="yellow")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Flyhalf"),], aes(x=Debut, y=BMI),se=F, colour="deepskyblue")+
+    geom_smooth(data=dfRUG, aes(x=Debut, y=BMI),se=F, colour="slategray2")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Body Mass Index",
+         subtitle = "Positions: Back Row vs Flyhalf")
+
+gg41 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=BMI),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Back Row"),], aes(x=Debut, y=BMI),colour="gold", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Centre"),], aes(x=Debut, y=BMI),colour="purple", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Back Row"),], aes(x=Debut, y=BMI),se=F, colour="yellow")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Centre"),], aes(x=Debut, y=BMI),se=F, colour="magenta")+
+    geom_smooth(data=dfRUG, aes(x=Debut, y=BMI),se=F, colour="slategray2")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Body Mass Index",
+         subtitle = "Positions: Back Row vs Centre")
+
+gg42 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=BMI),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Back Row"),], aes(x=Debut, y=BMI),colour="gold", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Outside Back"),], aes(x=Debut, y=BMI),colour="magenta", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Back Row"),], aes(x=Debut, y=BMI),se=F, colour="yellow")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Outside Back"),], aes(x=Debut, y=BMI),se=F, colour="purple")+
+    geom_smooth(data=dfRUG, aes(x=Debut, y=BMI),se=F, colour="slategray2")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Body Mass Index",
+         subtitle = "Positions: Back Row vs Outside Back")
+
+####BMI: Scrumhalf Comparisons [43-45] ####
+
+gg4 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=BMI),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Scrumhalf"),], aes(x=Debut, y=BMI),colour="green", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Scrumhalf"),], aes(x=Debut, y=BMI),se=F, colour="black")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Body Mass Index",
+         subtitle = "Position: Scrumhalf")
+
+gg43 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=BMI),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Scrumhalf"),], aes(x=Debut, y=BMI),colour="green", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Flyhalf"),], aes(x=Debut, y=BMI),colour="blue", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Scrumhalf"),], aes(x=Debut, y=BMI),se=F, colour="lawngreen")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Flyhalf"),], aes(x=Debut, y=BMI),se=F, colour="deepskyblue")+
+    geom_smooth(data=dfRUG, aes(x=Debut, y=BMI),se=F, colour="slategray2")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Body Mass Index",
+         subtitle = "Positions: Scrumhalf vs Flyhalf")
+
+gg44 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=BMI),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Scrumhalf"),], aes(x=Debut, y=BMI),colour="green", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Centre"),], aes(x=Debut, y=BMI),colour="purple", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Scrumhalf"),], aes(x=Debut, y=BMI),se=F, colour="lawngreen")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Centre"),], aes(x=Debut, y=BMI),se=F, colour="magenta")+
+    geom_smooth(data=dfRUG, aes(x=Debut, y=BMI),se=F, colour="slategray2")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Body Mass Index",
+         subtitle = "Positions: Scrumhalf vs Centre")
+
+gg45 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=BMI),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Scrumhalf"),], aes(x=Debut, y=BMI),colour="green", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Outside Back"),], aes(x=Debut, y=BMI),colour="magenta", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Scrumhalf"),], aes(x=Debut, y=BMI),se=F, colour="lawngreen")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Outside Back"),], aes(x=Debut, y=BMI),se=F, colour="purple")+
+    geom_smooth(data=dfRUG, aes(x=Debut, y=BMI),se=F, colour="slategray2")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Body Mass Index",
+         subtitle = "Positions: Scrumhalf vs Outside Back")
+
+
+####BMI: Flyhalf Comparisons [46-47] ####
+
+gg5 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=BMI),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Flyhalf"),], aes(x=Debut, y=BMI),colour="blue", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Flyhalf"),], aes(x=Debut, y=BMI),se=F, colour="black")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Body Mass Index",
+         subtitle = "Position: Flyhalf")
+
+gg46 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=BMI),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Flyhalf"),], aes(x=Debut, y=BMI),colour="blue", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Centre"),], aes(x=Debut, y=BMI),colour="purple", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Flyhalf"),], aes(x=Debut, y=BMI),se=F, colour="deepskyblue")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Centre"),], aes(x=Debut, y=BMI),se=F, colour="magenta")+
+    geom_smooth(data=dfRUG, aes(x=Debut, y=BMI),se=F, colour="slategray2")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Body Mass Index",
+         subtitle = "Positions: Flyhalf vs Centre")
+
+gg47 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=BMI),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Flyhalf"),], aes(x=Debut, y=BMI),colour="blue", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Outside Back"),], aes(x=Debut, y=BMI),colour="magenta", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Flyhalf"),], aes(x=Debut, y=BMI),se=F, colour="deepskyblue")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Outside Back"),], aes(x=Debut, y=BMI),se=F, colour="purple")+
+    geom_smooth(data=dfRUG, aes(x=Debut, y=BMI),se=F, colour="slategray2")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Body Mass Index",
+         subtitle = "Positions: Flyhalf vs Outside Back")
+
+####BMI: Centre Comparisons [48]####
+
+gg6 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=BMI),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Centre"),], aes(x=Debut, y=BMI),colour="purple", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Centre"),], aes(x=Debut, y=BMI),se=F, colour="black")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Body Mass Index",
+         subtitle = "Position: Centre")
+
+gg48 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=BMI),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Centre"),], aes(x=Debut, y=BMI),colour="purple", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Outside Back"),], aes(x=Debut, y=BMI),colour="magenta", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Centre"),], aes(x=Debut, y=BMI),se=F, colour="darkorchid")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Outside Back"),], aes(x=Debut, y=BMI),se=F, colour="deeppink4")+
+    geom_smooth(data=dfRUG, aes(x=Debut, y=BMI),se=F, colour="slategray2")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Body Mass Index",
+         subtitle = "Positions: Centre vs Outside Back")
+
+
+
+
+
+
+
+
+####BMI: Outside Back Comparisons [14] ####
+gg7 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=BMI),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Outside Back"),], aes(x=Debut, y=BMI),colour="magenta", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Outside Back"),], aes(x=Debut, y=BMI),se=F, colour="black")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Body Mass Index)",
+         subtitle = "Position: Outside Back")
+
+
+####BMI: Backline [22] ####
+
+gg22 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=BMI),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Zone=="Backline"),], aes(x=Debut, y=BMI),colour="olivedrab", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Zone=="Backline"),], aes(x=Debut, y=BMI),se=F, colour="black")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Body Mass Index",
+         subtitle = "Position: Backline")
+
+gg91 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=BMI),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Zone=="Backline"),], aes(x=Debut, y=BMI),colour="olivedrab", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Front Row"),], aes(x=Debut, y=BMI),colour="red", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Zone=="Backline"),], aes(x=Debut, y=BMI),se=F, colour="green")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Front Row"),], aes(x=Debut, y=BMI),se=F, colour="firebrick")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Body Mass Index",
+         subtitle = "Position: Backline vs Front Row")
+
+gg92 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=BMI),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Zone=="Backline"),], aes(x=Debut, y=BMI),colour="olivedrab", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Second Row"),], aes(x=Debut, y=BMI),colour="orange", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Zone=="Backline"),], aes(x=Debut, y=BMI),se=F, colour="green")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Second Row"),], aes(x=Debut, y=BMI),se=F, colour="darkorange3")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Body Mass Index",
+         subtitle = "Position: Backline vs Second Row")
+
+gg93 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=BMI),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Zone=="Backline"),], aes(x=Debut, y=BMI),colour="olivedrab", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Back Row"),], aes(x=Debut, y=BMI),colour="gold", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Zone=="Backline"),], aes(x=Debut, y=BMI),se=F, colour="green")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Back Row"),], aes(x=Debut, y=BMI),se=F, colour="yellow")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Body Mass Index",
+         subtitle = "Position: Backline vs Back Row")
+
+gg112 <- ggplot()+
+    geom_point(data=dfRUG[which(dfRUG$Zone=="Backline"),], aes(x=Debut, y=BMI),colour="olivedrab", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Zone=="Forwards"),], aes(x=Debut, y=BMI),colour="tomato4", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Zone=="Backline"),], aes(x=Debut, y=BMI),se=F, colour="green")+
+    geom_smooth(data=dfRUG[which(dfRUG$Zone=="Forwards"),], aes(x=Debut, y=BMI),se=F, colour="red")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Body Mass Index",
+         subtitle = "Position: Backline vs Forwards")
+
+####BMI: Forwards [23] ####
+gg23 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=BMI),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Zone=="Forwards"),], aes(x=Debut, y=BMI),colour="tomato4", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Zone=="Forwards"),], aes(x=Debut, y=BMI),se=F, colour="black")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Body Mass Index",
+         subtitle = "Position: Forwards")
+
+gg94 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=BMI),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Zone=="Forwards"),], aes(x=Debut, y=BMI),colour="tomato4", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Scrumhalf"),], aes(x=Debut, y=BMI),colour="green", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Zone=="Forwards"),], aes(x=Debut, y=BMI),se=F, colour="yellow")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Scrumhalf"),], aes(x=Debut, y=BMI),se=F, colour="lawngreen")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Body Mass Index",
+         subtitle = "Position: Forwards vs Scrumhalf")
+
+gg95 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=BMI),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Zone=="Forwards"),], aes(x=Debut, y=BMI),colour="tomato4", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Flyhalf"),], aes(x=Debut, y=BMI),colour="blue", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Zone=="Forwards"),], aes(x=Debut, y=BMI),se=F, colour="green")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Flyhalf"),], aes(x=Debut, y=BMI),se=F, colour="deepskyblue")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Body Mass Index",
+         subtitle = "Position: Forwards vs Flyhalf")
+
+gg96 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=BMI),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Zone=="Forwards"),], aes(x=Debut, y=BMI),colour="tomato4", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Centre"),], aes(x=Debut, y=BMI),colour="purple", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Zone=="Forwards"),], aes(x=Debut, y=BMI),se=F, colour="yellow")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Centre"),], aes(x=Debut, y=BMI),se=F, colour="magenta")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Body Mass Index",
+         subtitle = "Position: Forwards vs Centre")
+
+gg97 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=BMI),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Zone=="Forwards"),], aes(x=Debut, y=BMI),colour="tomato4", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Outside Back"),], aes(x=Debut, y=BMI),colour="magenta", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Zone=="Forwards"),], aes(x=Debut, y=BMI),se=F, colour="yellow")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Outside Back"),], aes(x=Debut, y=BMI),se=F, colour="purple")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Body Mass Index",
+         subtitle = "Position: Forwards vs Outside Back")
+
+
+
+
+
+############################################
+####CM: Front Row Comparisons [49-54] ####
+
+gg8 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=CM),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Front Row"),], aes(x=Debut, y=CM),colour="red", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Front Row"),], aes(x=Debut, y=CM),se=F, colour="black")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Height (CM)",
+         subtitle = "Position: Front Row")
+
+gg49 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=CM),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Front Row"),], aes(x=Debut, y=CM),colour="red", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Second Row"),], aes(x=Debut, y=CM),colour="orange", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Front Row"),], aes(x=Debut, y=CM),se=F, colour="firebrick")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Second Row"),], aes(x=Debut, y=CM),se=F, colour="darkorange3")+
+    geom_smooth(data=dfRUG, aes(x=Debut, y=CM),se=F, colour="slategray2")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Height (CM)",
+         subtitle = "Positions: Front Row vs Second Row")
+
+gg50 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=CM),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Front Row"),], aes(x=Debut, y=CM),colour="red", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Back Row"),], aes(x=Debut, y=CM),colour="gold", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Front Row"),], aes(x=Debut, y=CM),se=F, colour="firebrick")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Back Row"),], aes(x=Debut, y=CM),se=F, colour="yellow")+
+    geom_smooth(data=dfRUG, aes(x=Debut, y=CM),se=F, colour="slategray2")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Height (CM)",
+         subtitle = "Positions: Front Row vs Back Row")
+
+gg51 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=CM),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Front Row"),], aes(x=Debut, y=CM),colour="red", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Scrumhalf"),], aes(x=Debut, y=CM),colour="green", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Front Row"),], aes(x=Debut, y=CM),se=F, colour="firebrick")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Scrumhalf"),], aes(x=Debut, y=CM),se=F, colour="lawngreen")+
+    geom_smooth(data=dfRUG, aes(x=Debut, y=CM),se=F, colour="slategray2")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Height (CM)",
+         subtitle = "Positions: Front Row vs Scrumhalf")
+
+gg52 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=CM),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Front Row"),], aes(x=Debut, y=CM),colour="red", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Flyhalf"),], aes(x=Debut, y=CM),colour="blue", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Front Row"),], aes(x=Debut, y=CM),se=F, colour="firebrick")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Flyhalf"),], aes(x=Debut, y=CM),se=F, colour="deepskyblue")+
+    geom_smooth(data=dfRUG, aes(x=Debut, y=CM),se=F, colour="slategray2")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Height (CM)",
+         subtitle = "Positions: Front Row vs Flyhalf")
+
+gg53 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=CM),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Front Row"),], aes(x=Debut, y=CM),colour="red", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Centre"),], aes(x=Debut, y=CM),colour="purple", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Front Row"),], aes(x=Debut, y=CM),se=F, colour="firebrick")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Centre"),], aes(x=Debut, y=CM),se=F, colour="magenta")+
+    geom_smooth(data=dfRUG, aes(x=Debut, y=CM),se=F, colour="slategray2")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Height (CM)",
+         subtitle = "Positions: Front Row vs Centre")
+
+gg54 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=CM),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Front Row"),], aes(x=Debut, y=CM),colour="red", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Outside Back"),], aes(x=Debut, y=CM),colour="magenta", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Front Row"),], aes(x=Debut, y=CM),se=F, colour="firebrick")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Outside Back"),], aes(x=Debut, y=CM),se=F, colour="purple")+
+    geom_smooth(data=dfRUG, aes(x=Debut, y=CM),se=F, colour="slategray2")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Height (CM)",
+         subtitle = "Positions: Front Row vs Outside Back")
+
+####CM: Second Row Comparisons [55-59] ####
+
+gg9 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=CM),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Second Row"),], aes(x=Debut, y=CM),colour="orange", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Second Row"),], aes(x=Debut, y=CM),se=F, colour="black")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Height (CM)",
+         subtitle = "Position: Second Row")
+
+gg55 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=CM),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Second Row"),], aes(x=Debut, y=CM),colour="orange", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Back Row"),], aes(x=Debut, y=CM),colour="gold", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Second Row"),], aes(x=Debut, y=CM),se=F, colour="darkorange3")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Back Row"),], aes(x=Debut, y=CM),se=F, colour="yellow")+
+    geom_smooth(data=dfRUG, aes(x=Debut, y=CM),se=F, colour="slategray2")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Height (CM)",
+         subtitle = "Positions: Second Row vs Back Row")
+
+gg56 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=CM),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Second Row"),], aes(x=Debut, y=CM),colour="orange", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Scrumhalf"),], aes(x=Debut, y=CM),colour="green", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Second Row"),], aes(x=Debut, y=CM),se=F, colour="darkorange3")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Scrumhalf"),], aes(x=Debut, y=CM),se=F, colour="lawngreen")+
+    geom_smooth(data=dfRUG, aes(x=Debut, y=CM),se=F, colour="slategray2")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Height (CM)",
+         subtitle = "Positions: Second Row vs Scrumhalf")
+
+gg57 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=CM),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Second Row"),], aes(x=Debut, y=CM),colour="orange", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Flyhalf"),], aes(x=Debut, y=CM),colour="blue", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Second Row"),], aes(x=Debut, y=CM),se=F, colour="darkorange3")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Flyhalf"),], aes(x=Debut, y=CM),se=F, colour="deepskyblue")+
+    geom_smooth(data=dfRUG, aes(x=Debut, y=CM),se=F, colour="slategray2")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Height (CM)",
+         subtitle = "Positions: Second Row vs Flyhalf")
+
+gg58 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=CM),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Second Row"),], aes(x=Debut, y=CM),colour="orange", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Centre"),], aes(x=Debut, y=CM),colour="purple", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Second Row"),], aes(x=Debut, y=CM),se=F, colour="darkorange3")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Centre"),], aes(x=Debut, y=CM),se=F, colour="magenta")+
+    geom_smooth(data=dfRUG, aes(x=Debut, y=CM),se=F, colour="slategray2")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Height (CM)",
+         subtitle = "Positions: Second Row vs Centre")
+
+gg59 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=CM),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Second Row"),], aes(x=Debut, y=CM),colour="orange", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Outside Back"),], aes(x=Debut, y=CM),colour="magenta", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Second Row"),], aes(x=Debut, y=CM),se=F, colour="darkorange3")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Outside Back"),], aes(x=Debut, y=CM),se=F, colour="purple")+
+    geom_smooth(data=dfRUG, aes(x=Debut, y=CM),se=F, colour="slategray2")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Height (CM)",
+         subtitle = "Positions: Second Row vs Outside Back")
+
+
+####CM: Back Row Comparisons [60-63] ####
+
+gg10 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=CM),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Back Row"),], aes(x=Debut, y=CM),colour="gold", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Back Row"),], aes(x=Debut, y=CM),se=F, colour="black")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Height (CM)",
+         subtitle = "Position: Back Row")
+
+gg60 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=CM),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Back Row"),], aes(x=Debut, y=CM),colour="gold", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Scrumhalf"),], aes(x=Debut, y=CM),colour="green", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Back Row"),], aes(x=Debut, y=CM),se=F, colour="yellow")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Scrumhalf"),], aes(x=Debut, y=CM),se=F, colour="lawngreen")+
+    geom_smooth(data=dfRUG, aes(x=Debut, y=CM),se=F, colour="slategray2")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Height (CM)",
+         subtitle = "Positions: Back Row vs Scrumhalf")
+
+gg61 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=CM),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Back Row"),], aes(x=Debut, y=CM),colour="gold", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Flyhalf"),], aes(x=Debut, y=CM),colour="blue", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Back Row"),], aes(x=Debut, y=CM),se=F, colour="yellow")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Flyhalf"),], aes(x=Debut, y=CM),se=F, colour="deepskyblue")+
+    geom_smooth(data=dfRUG, aes(x=Debut, y=CM),se=F, colour="slategray2")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Height (CM)",
+         subtitle = "Positions: Back Row vs Flyhalf")
+
+gg62 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=CM),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Back Row"),], aes(x=Debut, y=CM),colour="gold", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Centre"),], aes(x=Debut, y=CM),colour="purple", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Back Row"),], aes(x=Debut, y=CM),se=F, colour="yellow")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Centre"),], aes(x=Debut, y=CM),se=F, colour="magenta")+
+    geom_smooth(data=dfRUG, aes(x=Debut, y=CM),se=F, colour="slategray2")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Height (CM)",
+         subtitle = "Positions: Back Row vs Centre")
+
+gg63 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=CM),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Back Row"),], aes(x=Debut, y=CM),colour="gold", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Outside Back"),], aes(x=Debut, y=CM),colour="magenta", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Back Row"),], aes(x=Debut, y=CM),se=F, colour="yellow")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Outside Back"),], aes(x=Debut, y=CM),se=F, colour="purple")+
+    geom_smooth(data=dfRUG, aes(x=Debut, y=CM),se=F, colour="slategray2")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Height (CM)",
+         subtitle = "Positions: Back Row vs Outside Back")
+
+####CM: Scrumhalf Comparisons [64-66] ####
+
+gg11 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=CM),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Scrumhalf"),], aes(x=Debut, y=CM),colour="green", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Scrumhalf"),], aes(x=Debut, y=CM),se=F, colour="black")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Height (CM)",
+         subtitle = "Position: Scrumhalf")
+
+gg64 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=CM),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Scrumhalf"),], aes(x=Debut, y=CM),colour="green", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Flyhalf"),], aes(x=Debut, y=CM),colour="blue", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Scrumhalf"),], aes(x=Debut, y=CM),se=F, colour="lawngreen")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Flyhalf"),], aes(x=Debut, y=CM),se=F, colour="deepskyblue")+
+    geom_smooth(data=dfRUG, aes(x=Debut, y=CM),se=F, colour="slategray2")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Height (CM)",
+         subtitle = "Positions: Scrumhalf vs Flyhalf")
+
+gg65 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=CM),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Scrumhalf"),], aes(x=Debut, y=CM),colour="green", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Centre"),], aes(x=Debut, y=CM),colour="purple", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Scrumhalf"),], aes(x=Debut, y=CM),se=F, colour="lawngreen")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Centre"),], aes(x=Debut, y=CM),se=F, colour="magenta")+
+    geom_smooth(data=dfRUG, aes(x=Debut, y=CM),se=F, colour="slategray2")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Height (CM)",
+         subtitle = "Positions: Scrumhalf vs Centre")
+
+gg66 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=CM),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Scrumhalf"),], aes(x=Debut, y=CM),colour="green", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Outside Back"),], aes(x=Debut, y=CM),colour="magenta", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Scrumhalf"),], aes(x=Debut, y=CM),se=F, colour="lawngreen")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Outside Back"),], aes(x=Debut, y=CM),se=F, colour="purple")+
+    geom_smooth(data=dfRUG, aes(x=Debut, y=CM),se=F, colour="slategray2")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Height (CM)",
+         subtitle = "Positions: Scrumhalf vs Outside Back")
+
+
+####CM: Flyhalf Comparisons [67-68] ####
+
+gg12 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=CM),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Flyhalf"),], aes(x=Debut, y=CM),colour="blue", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Flyhalf"),], aes(x=Debut, y=CM),se=F, colour="black")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Height (CM)",
+         subtitle = "Position: Flyhalf")
+
+gg67 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=CM),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Flyhalf"),], aes(x=Debut, y=CM),colour="blue", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Centre"),], aes(x=Debut, y=CM),colour="purple", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Flyhalf"),], aes(x=Debut, y=CM),se=F, colour="deepskyblue")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Centre"),], aes(x=Debut, y=CM),se=F, colour="magenta")+
+    geom_smooth(data=dfRUG, aes(x=Debut, y=CM),se=F, colour="slategray2")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Height (CM)",
+         subtitle = "Positions: Flyhalf vs Centre")
+
+gg68 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=CM),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Flyhalf"),], aes(x=Debut, y=CM),colour="blue", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Outside Back"),], aes(x=Debut, y=CM),colour="magenta", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Flyhalf"),], aes(x=Debut, y=CM),se=F, colour="deepskyblue")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Outside Back"),], aes(x=Debut, y=CM),se=F, colour="purple")+
+    geom_smooth(data=dfRUG, aes(x=Debut, y=CM),se=F, colour="slategray2")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Height (CM)",
+         subtitle = "Positions: Flyhalf vs Outside Back")
+
+####CM: Centre Comparisons [69]####
+
+gg13 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=CM),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Centre"),], aes(x=Debut, y=CM),colour="purple", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Centre"),], aes(x=Debut, y=CM),se=F, colour="black")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Height (CM)",
+         subtitle = "Position: Centre")
+
+gg69 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=CM),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Centre"),], aes(x=Debut, y=CM),colour="purple", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Outside Back"),], aes(x=Debut, y=CM),colour="magenta", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Centre"),], aes(x=Debut, y=CM),se=F, colour="darkorchid")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Outside Back"),], aes(x=Debut, y=CM),se=F, colour="deeppink4")+
+    geom_smooth(data=dfRUG, aes(x=Debut, y=CM),se=F, colour="slategray2")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Height (CM)",
+         subtitle = "Positions: Centre vs Outside Back")
+
+
+
+
+
+
+
+####CM: Outside Back Comparisons [14] ####
+gg14 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=CM),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Outside Back"),], aes(x=Debut, y=CM),colour="magenta", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Outside Back"),], aes(x=Debut, y=CM),se=F, colour="black")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Height (CM)",
+         subtitle = "Position: Outside Back")
+
+
+####CM: Backline [24] ####
+gg24 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=CM),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Zone=="Backline"),], aes(x=Debut, y=CM),colour="olivedrab", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Zone=="Backline"),], aes(x=Debut, y=CM),se=F, colour="black")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Height (CM)",
+         subtitle = "Position: Backline")
+
+gg98 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=CM),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Zone=="Backline"),], aes(x=Debut, y=CM),colour="olivedrab", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Front Row"),], aes(x=Debut, y=CM),colour="red", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Zone=="Backline"),], aes(x=Debut, y=CM),se=F, colour="green")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Front Row"),], aes(x=Debut, y=CM),se=F, colour="firebrick")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Height (CM)",
+         subtitle = "Position: Backline vs Front Row")
+
+gg99 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=CM),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Zone=="Backline"),], aes(x=Debut, y=CM),colour="olivedrab", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Second Row"),], aes(x=Debut, y=CM),colour="orange", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Zone=="Backline"),], aes(x=Debut, y=CM),se=F, colour="green")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Second Row"),], aes(x=Debut, y=CM),se=F, colour="darkorange3")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Height (CM)",
+         subtitle = "Position: Backline vs Second Row")
+
+gg100 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=CM),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Zone=="Backline"),], aes(x=Debut, y=CM),colour="olivedrab", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Back Row"),], aes(x=Debut, y=CM),colour="gold", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Zone=="Backline"),], aes(x=Debut, y=CM),se=F, colour="green")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Back Row"),], aes(x=Debut, y=CM),se=F, colour="yellow")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Height (CM)",
+         subtitle = "Position: Backline vs Back Row")
+
+gg113 <- ggplot()+
+    geom_point(data=dfRUG[which(dfRUG$Zone=="Backline"),], aes(x=Debut, y=CM),colour="olivedrab", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Zone=="Forwards"),], aes(x=Debut, y=CM),colour="tomato4", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Zone=="Backline"),], aes(x=Debut, y=CM),se=F, colour="green")+
+    geom_smooth(data=dfRUG[which(dfRUG$Zone=="Forwards"),], aes(x=Debut, y=CM),se=F, colour="red")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Height (CM)",
+         subtitle = "Position: Backline vs Forwards")
+
+
+####CM: Forwards [25] ####
+gg25 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=CM),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Zone=="Forwards"),], aes(x=Debut, y=CM),colour="tomato4", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Zone=="Forwards"),], aes(x=Debut, y=CM),se=F, colour="black")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Height (CM)",
+         subtitle = "Position: Forwards")
+
+gg101 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=CM),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Zone=="Forwards"),], aes(x=Debut, y=CM),colour="tomato4", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Scrumhalf"),], aes(x=Debut, y=CM),colour="green", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Zone=="Forwards"),], aes(x=Debut, y=CM),se=F, colour="yellow")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Scrumhalf"),], aes(x=Debut, y=CM),se=F, colour="lawngreen")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Height (CM)",
+         subtitle = "Position: Forwards vs Scrumhalf")
+
+gg102 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=CM),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Zone=="Forwards"),], aes(x=Debut, y=CM),colour="tomato4", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Flyhalf"),], aes(x=Debut, y=CM),colour="blue", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Zone=="Forwards"),], aes(x=Debut, y=CM),se=F, colour="green")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Flyhalf"),], aes(x=Debut, y=CM),se=F, colour="deepskyblue")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Height (CM)",
+         subtitle = "Position: Forwards vs Flyhalf")
+
+gg103 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=CM),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Zone=="Forwards"),], aes(x=Debut, y=CM),colour="tomato4", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Centre"),], aes(x=Debut, y=CM),colour="purple", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Zone=="Forwards"),], aes(x=Debut, y=CM),se=F, colour="yellow")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Centre"),], aes(x=Debut, y=CM),se=F, colour="magenta")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Height (CM)",
+         subtitle = "Position: Forwards vs Centre")
+
+gg104 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=CM),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Zone=="Forwards"),], aes(x=Debut, y=CM),colour="tomato4", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Outside Back"),], aes(x=Debut, y=CM),colour="magenta", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Zone=="Forwards"),], aes(x=Debut, y=CM),se=F, colour="yellow")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Outside Back"),], aes(x=Debut, y=CM),se=F, colour="purple")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Height (CM)",
+         subtitle = "Position: Forwards vs Outside Back")
+
+
+############################################
+####KG: Front Row Comparisons [70-75] ####
+
+gg15 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=KG),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Front Row"),], aes(x=Debut, y=KG),colour="red", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Front Row"),], aes(x=Debut, y=KG),se=F, colour="black")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Weight (KG)",
+         subtitle = "Position: Front Row")
+
+gg70 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=KG),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Front Row"),], aes(x=Debut, y=KG),colour="red", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Second Row"),], aes(x=Debut, y=KG),colour="orange", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Front Row"),], aes(x=Debut, y=KG),se=F, colour="firebrick")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Second Row"),], aes(x=Debut, y=KG),se=F, colour="darkorange3")+
+    geom_smooth(data=dfRUG, aes(x=Debut, y=KG),se=F, colour="slategray2")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Weight (KG)",
+         subtitle = "Positions: Front Row vs Second Row")
+
+gg71 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=KG),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Front Row"),], aes(x=Debut, y=KG),colour="red", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Back Row"),], aes(x=Debut, y=KG),colour="gold", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Front Row"),], aes(x=Debut, y=KG),se=F, colour="firebrick")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Back Row"),], aes(x=Debut, y=KG),se=F, colour="yellow")+
+    geom_smooth(data=dfRUG, aes(x=Debut, y=KG),se=F, colour="slategray2")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Weight (KG)",
+         subtitle = "Positions: Front Row vs Back Row")
+
+gg72 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=KG),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Front Row"),], aes(x=Debut, y=KG),colour="red", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Scrumhalf"),], aes(x=Debut, y=KG),colour="green", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Front Row"),], aes(x=Debut, y=KG),se=F, colour="firebrick")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Scrumhalf"),], aes(x=Debut, y=KG),se=F, colour="lawngreen")+
+    geom_smooth(data=dfRUG, aes(x=Debut, y=KG),se=F, colour="slategray2")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Weight (KG)",
+         subtitle = "Positions: Front Row vs Scrumhalf")
+
+gg73 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=KG),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Front Row"),], aes(x=Debut, y=KG),colour="red", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Flyhalf"),], aes(x=Debut, y=KG),colour="blue", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Front Row"),], aes(x=Debut, y=KG),se=F, colour="firebrick")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Flyhalf"),], aes(x=Debut, y=KG),se=F, colour="deepskyblue")+
+    geom_smooth(data=dfRUG, aes(x=Debut, y=KG),se=F, colour="slategray2")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Weight (KG)",
+         subtitle = "Positions: Front Row vs Flyhalf")
+
+gg74 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=KG),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Front Row"),], aes(x=Debut, y=KG),colour="red", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Centre"),], aes(x=Debut, y=KG),colour="purple", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Front Row"),], aes(x=Debut, y=KG),se=F, colour="firebrick")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Centre"),], aes(x=Debut, y=KG),se=F, colour="magenta")+
+    geom_smooth(data=dfRUG, aes(x=Debut, y=KG),se=F, colour="slategray2")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Weight (KG)",
+         subtitle = "Positions: Front Row vs Centre")
+
+gg75 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=KG),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Front Row"),], aes(x=Debut, y=KG),colour="red", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Outside Back"),], aes(x=Debut, y=KG),colour="magenta", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Front Row"),], aes(x=Debut, y=KG),se=F, colour="firebrick")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Outside Back"),], aes(x=Debut, y=KG),se=F, colour="purple")+
+    geom_smooth(data=dfRUG, aes(x=Debut, y=KG),se=F, colour="slategray2")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Weight (KG)",
+         subtitle = "Positions: Front Row vs Outside Back")
+
+####KG: Second Row Comparisons [76-80] ####
+
+gg16 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=KG),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Second Row"),], aes(x=Debut, y=KG),colour="orange", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Second Row"),], aes(x=Debut, y=KG),se=F, colour="black")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Weight (KG)",
+         subtitle = "Position: Second Row")
+
+gg76 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=KG),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Second Row"),], aes(x=Debut, y=KG),colour="orange", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Back Row"),], aes(x=Debut, y=KG),colour="gold", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Second Row"),], aes(x=Debut, y=KG),se=F, colour="darkorange3")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Back Row"),], aes(x=Debut, y=KG),se=F, colour="yellow")+
+    geom_smooth(data=dfRUG, aes(x=Debut, y=KG),se=F, colour="slategray2")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Weight (KG)",
+         subtitle = "Positions: Second Row vs Back Row")
+
+gg77 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=KG),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Second Row"),], aes(x=Debut, y=KG),colour="orange", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Scrumhalf"),], aes(x=Debut, y=KG),colour="green", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Second Row"),], aes(x=Debut, y=KG),se=F, colour="darkorange3")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Scrumhalf"),], aes(x=Debut, y=KG),se=F, colour="lawngreen")+
+    geom_smooth(data=dfRUG, aes(x=Debut, y=KG),se=F, colour="slategray2")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Weight (KG)",
+         subtitle = "Positions: Second Row vs Scrumhalf")
+
+gg78 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=KG),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Second Row"),], aes(x=Debut, y=KG),colour="orange", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Flyhalf"),], aes(x=Debut, y=KG),colour="blue", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Second Row"),], aes(x=Debut, y=KG),se=F, colour="darkorange3")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Flyhalf"),], aes(x=Debut, y=KG),se=F, colour="deepskyblue")+
+    geom_smooth(data=dfRUG, aes(x=Debut, y=KG),se=F, colour="slategray2")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Weight (KG)",
+         subtitle = "Positions: Second Row vs Flyhalf")
+
+gg79 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=KG),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Second Row"),], aes(x=Debut, y=KG),colour="orange", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Centre"),], aes(x=Debut, y=KG),colour="purple", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Second Row"),], aes(x=Debut, y=KG),se=F, colour="darkorange3")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Centre"),], aes(x=Debut, y=KG),se=F, colour="magenta")+
+    geom_smooth(data=dfRUG, aes(x=Debut, y=KG),se=F, colour="slategray2")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Weight (KG)",
+         subtitle = "Positions: Second Row vs Centre")
+
+gg80 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=KG),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Second Row"),], aes(x=Debut, y=KG),colour="orange", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Outside Back"),], aes(x=Debut, y=KG),colour="magenta", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Second Row"),], aes(x=Debut, y=KG),se=F, colour="darkorange3")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Outside Back"),], aes(x=Debut, y=KG),se=F, colour="purple")+
+    geom_smooth(data=dfRUG, aes(x=Debut, y=KG),se=F, colour="slategray2")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Weight (KG)",
+         subtitle = "Positions: Second Row vs Outside Back")
+
+
+####KG: Back Row Comparisons [81-84] ####
+
+gg17 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=KG),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Back Row"),], aes(x=Debut, y=KG),colour="gold", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Back Row"),], aes(x=Debut, y=KG),se=F, colour="black")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Weight (KG)",
+         subtitle = "Position: Back Row")
+
+gg81 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=KG),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Back Row"),], aes(x=Debut, y=KG),colour="gold", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Scrumhalf"),], aes(x=Debut, y=KG),colour="green", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Back Row"),], aes(x=Debut, y=KG),se=F, colour="yellow")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Scrumhalf"),], aes(x=Debut, y=KG),se=F, colour="lawngreen")+
+    geom_smooth(data=dfRUG, aes(x=Debut, y=KG),se=F, colour="slategray2")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Weight (KG)",
+         subtitle = "Positions: Back Row vs Scrumhalf")
+
+gg82 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=KG),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Back Row"),], aes(x=Debut, y=KG),colour="gold", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Flyhalf"),], aes(x=Debut, y=KG),colour="blue", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Back Row"),], aes(x=Debut, y=KG),se=F, colour="yellow")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Flyhalf"),], aes(x=Debut, y=KG),se=F, colour="deepskyblue")+
+    geom_smooth(data=dfRUG, aes(x=Debut, y=KG),se=F, colour="slategray2")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Please Work",
+         subtitle = "Positions: Back Row vs Flyhalf")
+
+gg83 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=KG),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Back Row"),], aes(x=Debut, y=KG),colour="gold", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Centre"),], aes(x=Debut, y=KG),colour="purple", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Back Row"),], aes(x=Debut, y=KG),se=F, colour="yellow")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Centre"),], aes(x=Debut, y=KG),se=F, colour="magenta")+
+    geom_smooth(data=dfRUG, aes(x=Debut, y=KG),se=F, colour="slategray2")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Weight (KG)",
+         subtitle = "Positions: Back Row vs Centre")
+
+gg84 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=KG),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Back Row"),], aes(x=Debut, y=KG),colour="gold", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Outside Back"),], aes(x=Debut, y=KG),colour="magenta", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Back Row"),], aes(x=Debut, y=KG),se=F, colour="yellow")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Outside Back"),], aes(x=Debut, y=KG),se=F, colour="purple")+
+    geom_smooth(data=dfRUG, aes(x=Debut, y=KG),se=F, colour="slategray2")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Weight (KG)",
+         subtitle = "Positions: Back Row vs Outside Back")
+
+####KG: Scrumhalf Comparisons [85-87] ####
+
+gg18 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=KG),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Scrumhalf"),], aes(x=Debut, y=KG),colour="green", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Scrumhalf"),], aes(x=Debut, y=KG),se=F, colour="black")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Weight (KG)",
+         subtitle = "Position: Scrumhalf")
+
+gg85 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=KG),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Scrumhalf"),], aes(x=Debut, y=KG),colour="green", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Flyhalf"),], aes(x=Debut, y=KG),colour="blue", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Scrumhalf"),], aes(x=Debut, y=KG),se=F, colour="lawngreen")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Flyhalf"),], aes(x=Debut, y=KG),se=F, colour="deepskyblue")+
+    geom_smooth(data=dfRUG, aes(x=Debut, y=KG),se=F, colour="slategray2")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Weight (KG)",
+         subtitle = "Positions: Scrumhalf vs Flyhalf")
+
+gg86 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=KG),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Scrumhalf"),], aes(x=Debut, y=KG),colour="green", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Centre"),], aes(x=Debut, y=KG),colour="purple", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Scrumhalf"),], aes(x=Debut, y=KG),se=F, colour="lawngreen")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Centre"),], aes(x=Debut, y=KG),se=F, colour="magenta")+
+    geom_smooth(data=dfRUG, aes(x=Debut, y=KG),se=F, colour="slategray2")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Weight (KG)",
+         subtitle = "Positions: Scrumhalf vs Centre")
+
+gg87 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=KG),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Scrumhalf"),], aes(x=Debut, y=KG),colour="green", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Outside Back"),], aes(x=Debut, y=KG),colour="magenta", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Scrumhalf"),], aes(x=Debut, y=KG),se=F, colour="lawngreen")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Outside Back"),], aes(x=Debut, y=KG),se=F, colour="purple")+
+    geom_smooth(data=dfRUG, aes(x=Debut, y=KG),se=F, colour="slategray2")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Weight (KG)",
+         subtitle = "Positions: Scrumhalf vs Outside Back")
+
+
+####KG: Flyhalf Comparisons [88-89] ####
+
+gg19 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=KG),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Flyhalf"),], aes(x=Debut, y=KG),colour="blue", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Flyhalf"),], aes(x=Debut, y=KG),se=F, colour="black")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Weight (KG)",
+         subtitle = "Position: Flyhalf")
+
+gg88 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=KG),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Flyhalf"),], aes(x=Debut, y=KG),colour="blue", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Centre"),], aes(x=Debut, y=KG),colour="purple", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Flyhalf"),], aes(x=Debut, y=KG),se=F, colour="deepskyblue")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Centre"),], aes(x=Debut, y=KG),se=F, colour="magenta")+
+    geom_smooth(data=dfRUG, aes(x=Debut, y=KG),se=F, colour="slategray2")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Weight (KG)",
+         subtitle = "Positions: Flyhalf vs Centre")
+
+gg89 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=KG),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Flyhalf"),], aes(x=Debut, y=KG),colour="blue", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Outside Back"),], aes(x=Debut, y=KG),colour="magenta", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Flyhalf"),], aes(x=Debut, y=KG),se=F, colour="deepskyblue")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Outside Back"),], aes(x=Debut, y=KG),se=F, colour="purple")+
+    geom_smooth(data=dfRUG, aes(x=Debut, y=KG),se=F, colour="slategray2")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Weight (KG)",
+         subtitle = "Positions: Flyhalf vs Outside Back")
+
+####KG: Centre Comparisons [90]####
+
+gg20 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=KG),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Centre"),], aes(x=Debut, y=KG),colour="purple", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Centre"),], aes(x=Debut, y=KG),se=F, colour="black")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Weight (KG)",
+         subtitle = "Position: Centre")
+
+gg90 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=KG),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Centre"),], aes(x=Debut, y=KG),colour="purple", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Outside Back"),], aes(x=Debut, y=KG),colour="magenta", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Centre"),], aes(x=Debut, y=KG),se=F, colour="darkorchid")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Outside Back"),], aes(x=Debut, y=KG),se=F, colour="deeppink4")+
+    geom_smooth(data=dfRUG, aes(x=Debut, y=KG),se=F, colour="slategray2")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Weight (KG)",
+         subtitle = "Positions: Centre vs Outside Back")
+
+####KG: Outside Back Comparisons [21]####
+
+gg21 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=KG),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Outside Back"),], aes(x=Debut, y=KG),colour="magenta", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Outside Back"),], aes(x=Debut, y=KG),se=F, colour="black")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Weight (KG)",
+         subtitle = "Position: Outside Back")
+####KG: Backline [26] ####
+gg26 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=KG),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Zone=="Backline"),], aes(x=Debut, y=KG),colour="olivedrab", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Zone=="Backline"),], aes(x=Debut, y=KG),se=F, colour="black")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Weight (KG)",
+         subtitle = "Position: Backline")
+
+gg105 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=KG),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Zone=="Backline"),], aes(x=Debut, y=KG),colour="olivedrab", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Front Row"),], aes(x=Debut, y=KG),colour="red", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Zone=="Backline"),], aes(x=Debut, y=KG),se=F, colour="green")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Front Row"),], aes(x=Debut, y=KG),se=F, colour="firebrick")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Weight (KG)",
+         subtitle = "Position: Backline vs Front Row")
+
+gg106 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=KG),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Zone=="Backline"),], aes(x=Debut, y=KG),colour="olivedrab", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Second Row"),], aes(x=Debut, y=KG),colour="orange", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Zone=="Backline"),], aes(x=Debut, y=KG),se=F, colour="green")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Second Row"),], aes(x=Debut, y=KG),se=F, colour="darkorange3")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Weight (KG)",
+         subtitle = "Position: Backline vs Second Row")
+
+gg107 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=KG),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Zone=="Backline"),], aes(x=Debut, y=KG),colour="olivedrab", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Back Row"),], aes(x=Debut, y=KG),colour="gold", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Zone=="Backline"),], aes(x=Debut, y=KG),se=F, colour="green")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Back Row"),], aes(x=Debut, y=KG),se=F, colour="yellow")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Weight (KG)",
+         subtitle = "Position: Backline vs Back Row")
+
+gg114 <- ggplot()+
+    geom_point(data=dfRUG[which(dfRUG$Zone=="Backline"),], aes(x=Debut, y=KG),colour="olivedrab", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Zone=="Forwards"),], aes(x=Debut, y=KG ),colour="tomato4", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Zone=="Backline"),], aes(x=Debut, y=KG),se=F, colour="green")+
+    geom_smooth(data=dfRUG[which(dfRUG$Zone=="Forwards"),], aes(x=Debut, y=KG),se=F, colour="red")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Weight (KG)",
+         subtitle = "Position: Backline vs Forwards")
+
+
+####KG: Forwards [27] ####
+gg27 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=KG),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Zone=="Forwards"),], aes(x=Debut, y=KG),colour="tomato4", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Zone=="Forwards"),], aes(x=Debut, y=KG),se=F, colour="black")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Weight (KG)",
+         subtitle = "Position: Forwards")
+
+gg108 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=KG),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Zone=="Forwards"),], aes(x=Debut, y=KG),colour="tomato4", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Scrumhalf"),], aes(x=Debut, y=KG),colour="green", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Zone=="Forwards"),], aes(x=Debut, y=KG),se=F, colour="yellow")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Scrumhalf"),], aes(x=Debut, y=KG),se=F, colour="lawngreen")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Weight (KG)",
+         subtitle = "Position: Forwards vs Scrumhalf")
+
+gg109 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=KG),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Zone=="Forwards"),], aes(x=Debut, y=KG),colour="tomato4", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Flyhalf"),], aes(x=Debut, y=KG),colour="blue", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Zone=="Forwards"),], aes(x=Debut, y=KG),se=F, colour="green")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Flyhalf"),], aes(x=Debut, y=KG),se=F, colour="deepskyblue")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Weight (KG)",
+         subtitle = "Position: Forwards vs Flyhalf")
+
+gg110 <- ggplot()+
+    geom_point(data=dfRUG, aes(x=Debut, y=KG),colour="slategray", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Zone=="Forwards"),], aes(x=Debut, y=KG),colour="tomato4", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Centre"),], aes(x=Debut, y=KG),colour="purple", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Zone=="Forwards"),], aes(x=Debut, y=KG),se=F, colour="yellow")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Centre"),], aes(x=Debut, y=KG),se=F, colour="magenta")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Weight (KG)",
+         subtitle = "Position: Forwards vs Centre")
+
+gg111 <- ggplot()+
+    geom_point(data=dfRUG[which(dfRUG$Zone=="Forwards"),], aes(x=Debut, y=KG),colour="tomato4", size=3, alpha=0.5)+
+    geom_point(data=dfRUG[which(dfRUG$Role=="Outside Back"),], aes(x=Debut, y=KG),colour="magenta", size=3, alpha=0.5)+
+    geom_smooth(data=dfRUG[which(dfRUG$Zone=="Forwards"),], aes(x=Debut, y=KG),se=F, colour="yellow")+
+    geom_smooth(data=dfRUG[which(dfRUG$Role=="Outside Back"),], aes(x=Debut, y=KG),se=F, colour="purple")+
+    theme_wsj()+theme(axis.title=element_text(size=12))+
+    labs(title = "Mass Evolution of Rugby Internationals", x="Year of Debut", y="Weight (KG)",
+         subtitle = "Position: Forwards vs Outside Back")
+
+
+
+
+############################################
+####CONSTRUCTION####
+
+plots <- list(gg1,gg2,gg3,gg4,gg5,gg6,gg7,
+              gg8,gg9,gg10,gg11,gg12,gg13,gg14,
+              gg15,gg16,gg17,gg18,gg19,gg20,gg21,
+              gg22,gg23,gg24,gg25,gg26,gg27,gg28,
+              gg29,gg30,gg31,gg32,gg33,gg34,gg35,
+              gg36,gg37,gg38,gg39,gg40,gg41,gg42,
+              gg43,gg44,gg45,gg46,gg47,gg48,gg49,
+              gg50,gg51,gg52,gg53,gg54,gg55,gg56,
+              gg57,gg58,gg59,gg60,gg61,gg62,gg63,
+              gg64,gg65,gg66,gg67,gg68,gg69,gg70,
+              gg71,gg72,gg73,gg74,gg75,gg76,gg77,
+              gg78,gg79,gg80,gg81,gg82,gg83,gg84,
+              gg85,gg86,gg87,gg88,gg89,gg90,gg91,
+              gg92,gg93,gg94,gg95,gg96,gg97,gg98,
+              gg99,gg100,gg101,gg102,gg103,gg104,
+              gg105,gg106,gg107,gg107,gg108,gg109,
+              gg110,gg111,gg112,gg113,gg114)
+
+
+
+############################################
+####ui.R####
+ui <- fluidPage(
+    theme = shinythemes::shinytheme("superhero"),
+    titlePanel("Mass Evolution of Rugby Internationals"),
+    sidebarPanel(position = "left",
+                 wellPanel(h3("Variables"),
+                           radioButtons(inputId = "yvar", label = h4("Mass Metric"), 
+                                        choices = list("Body Mass Index" = "BMI", "Weight (KG)" = "KG","Height (CM)" = "CM"),
+                                        selected = "BMI"),
+                           
+                           selectInput(inputId = "zone", label = h4("Position Zone"), 
+                                       choices = list("Front Row", "Second Row", "Back Row",
+                                                      "Scrumhalf", "Flyhalf", "Centre", "Outside Back"),
+                                       selected = "Front Row"),
+                           
+                           selectInput(inputId = "comp", label = h4("Compare Position"), 
+                                       choices = list("None", "Front Row", "Second Row", "Back Row",
+                                                      "Scrumhalf", "Flyhalf", "Centre", "Outside Back"),
+                                       selected = "None")
+                 ),
+                 wellPanel(position = "left",
+                           h4("Note:"),
+                           helpText("Data collected from", strong("ESPN Scrum's"),
+                                    a("Statguru.", 
+                                      href = "http://stats.espnscrum.com/statsguru/rugby/stats/index.html?class=1;filter=advanced;orderby=matches;size=200;template=results;type=player"),
+                                    "Data is limited prior to 1987."),
+                           helpText("Find me on", a("Twitter",href = "https://twitter.com/donwillmar"), "or on", a("Instagram", href = "https://www.instagram.com/sportviz_data/")
+                           )
+                 )
+    ),
+    mainPanel(
+        plotOutput("graf")
+    )
+)
+
+####server.R####
+server <- function(input, output) {
+    
+    selectedData <- reactive({
+        c(input$yvar, input$zone, input$comp)
+    })
+    
+    output$graf <- renderPlot ({
+        
+#### IF//ELSE for Comparison Positions: BMI####
+    
+            if ((input$yvar == "BMI") & (input$zone == "Front Row") & (input$comp == "None")){  
+            plots[[1]]
+        } else if ((input$yvar == "BMI") & (input$zone == "Front Row") & (input$comp == "Front Row")){  
+            plots[[1]]
+        } else if ((input$yvar == "BMI") & (input$zone == "Front Row") & (input$comp == "Second Row")) {
+            plots[[28]]
+        } else if ((input$yvar == "BMI") & (input$zone == "Front Row") & (input$comp == "Back Row")) {
+            plots[[29]]
+        } else if ((input$yvar == "BMI") & (input$zone == "Front Row") & (input$comp == "Scrumhalf")) {
+            plots[[30]]
+        } else if ((input$yvar == "BMI") & (input$zone == "Front Row") & (input$comp == "Flyhalf")) {
+            plots[[31]]
+        } else if ((input$yvar == "BMI") & (input$zone == "Front Row") & (input$comp == "Centre")) {
+            plots[[32]]
+        } else if ((input$yvar == "BMI") & (input$zone == "Front Row") & (input$comp == "Outside Back")) {
+            plots[[33]]
+        
+        } else if ((input$yvar == "BMI") & (input$zone == "Second Row") & (input$comp == "None")){ 
+            plots[[2]]
+        } else if ((input$yvar == "BMI") & (input$zone == "Second Row") & (input$comp == "Second Row")){ 
+            plots[[2]]
+        } else if ((input$yvar == "BMI") & (input$zone == "Second Row") & (input$comp == "Front Row")) {
+            plots[[28]]
+        } else if ((input$yvar == "BMI") & (input$zone == "Second Row") & (input$comp == "Back Row")) {
+            plots[[34]]
+        } else if ((input$yvar == "BMI") & (input$zone == "Second Row") & (input$comp == "Scrumhalf")) {
+            plots[[35]]
+        } else if ((input$yvar == "BMI") & (input$zone == "Second Row") & (input$comp == "Flyhalf")) {
+            plots[[36]]
+        } else if ((input$yvar == "BMI") & (input$zone == "Second Row") & (input$comp == "Centre")) {
+            plots[[37]]
+        } else if ((input$yvar == "BMI") & (input$zone == "Second Row") & (input$comp == "Outside Back")) {
+            plots[[38]]
+        
+        } else if ((input$yvar == "BMI") & (input$zone == "Back Row") & (input$comp == "None")){ 
+            plots[[3]]
+        } else if ((input$yvar == "BMI") & (input$zone == "Back Row") & (input$comp == "Back Row")){ 
+            plots[[3]]
+        } else if ((input$yvar == "BMI") & (input$zone == "Back Row") & (input$comp == "Front Row")) {
+            plots[[29]]
+        } else if ((input$yvar == "BMI") & (input$zone == "Back Row") & (input$comp == "Second Row")) {
+            plots[[34]]
+        } else if ((input$yvar == "BMI") & (input$zone == "Back Row") & (input$comp == "Scrumhalf")) {
+            plots[[39]]
+        } else if ((input$yvar == "BMI") & (input$zone == "Back Row") & (input$comp == "Flyhalf")) {
+            plots[[40]]
+        } else if ((input$yvar == "BMI") & (input$zone == "Back Row") & (input$comp == "Centre")) {
+            plots[[41]]
+        } else if ((input$yvar == "BMI") & (input$zone == "Back Row") & (input$comp == "Outside Back")) {
+            plots[[42]]
+        
+        } else if ((input$yvar == "BMI") & (input$zone == "Scrumhalf") & (input$comp == "None")){ 
+            plots[[4]]
+        } else if ((input$yvar == "BMI") & (input$zone == "Scrumhalf") & (input$comp == "Scrumhalf")){ 
+            plots[[4]]
+        } else if ((input$yvar == "BMI") & (input$zone == "Scrumhalf") & (input$comp == "Front Row")) {
+            plots[[30]]
+        } else if ((input$yvar == "BMI") & (input$zone == "Scrumhalf") & (input$comp == "Second Row")) {
+            plots[[35]] 
+        } else if ((input$yvar == "BMI") & (input$zone == "Scrumhalf") & (input$comp == "Back Row")) {
+            plots[[39]]
+        } else if ((input$yvar == "BMI") & (input$zone == "Scrumhalf") & (input$comp == "Flyhalf")) {
+            plots[[43]]
+        } else if ((input$yvar == "BMI") & (input$zone == "Scrumhalf") & (input$comp == "Centre")) {
+            plots[[44]]
+        } else if ((input$yvar == "BMI") & (input$zone == "Scrumhalf") & (input$comp == "Outside Back")) {
+            plots[[45]]
+
+        } else if ((input$yvar == "BMI") & (input$zone == "Flyhalf") & (input$comp == "None")){ 
+            plots[[5]]
+        } else if ((input$yvar == "BMI") & (input$zone == "Flyhalf") & (input$comp == "Flyhalf")){ 
+            plots[[5]]
+        } else if ((input$yvar == "BMI") & (input$zone == "Flyhalf") & (input$comp == "Front Row")) {
+            plots[[31]]
+        } else if ((input$yvar == "BMI") & (input$zone == "Flyhalf") & (input$comp == "Second Row")) {
+            plots[[36]]
+        } else if ((input$yvar == "BMI") & (input$zone == "Flyhalf") & (input$comp == "Back Row")) {
+            plots[[40]]
+        } else if ((input$yvar == "BMI") & (input$zone == "Flyhalf") & (input$comp == "Scrumhalf")) {
+            plots[[43]]
+        } else if ((input$yvar == "BMI") & (input$zone == "Flyhalf") & (input$comp == "Centre")) {
+            plots[[46]]
+        } else if ((input$yvar == "BMI") & (input$zone == "Flyhalf") & (input$comp == "Outside Back")) {
+            plots[[47]]
+
+        } else if ((input$yvar == "BMI") & (input$zone == "Centre") & (input$comp == "None")){ 
+            plots[[6]]
+        } else if ((input$yvar == "BMI") & (input$zone == "Centre") & (input$comp == "Centre")){ 
+            plots[[6]]
+        } else if ((input$yvar == "BMI") & (input$zone == "Centre") & (input$comp == "Front Row")) {
+            plots[[32]]
+        } else if ((input$yvar == "BMI") & (input$zone == "Centre") & (input$comp == "Second Row")) {
+            plots[[37]]
+        } else if ((input$yvar == "BMI") & (input$zone == "Centre") & (input$comp == "Back Row")) {
+            plots[[41]]
+        } else if ((input$yvar == "BMI") & (input$zone == "Centre") & (input$comp == "Scrumhalf")) {
+            plots[[44]]
+        } else if ((input$yvar == "BMI") & (input$zone == "Centre") & (input$comp == "Flyhalf")) {
+            plots[[46]]
+        } else if ((input$yvar == "BMI") & (input$zone == "Centre") & (input$comp == "Outside Back")) {
+            plots[[48]]
+            
+        } else if ((input$yvar == "BMI") & (input$zone == "Outside Back") & (input$comp == "None")){ 
+            plots[[7]]
+        } else if ((input$yvar == "BMI") & (input$zone == "Outside Back") & (input$comp == "Outside Back")){ 
+            plots[[7]]
+        } else if ((input$yvar == "BMI") & (input$zone == "Outside Back") & (input$comp == "Front Row")) {
+            plots[[33]]
+        } else if ((input$yvar == "BMI") & (input$zone == "Outside Back") & (input$comp == "Second Row")) {
+            plots[[38]]
+        } else if ((input$yvar == "BMI") & (input$zone == "Outside Back") & (input$comp == "Back Row")) {
+            plots[[42]]
+        } else if ((input$yvar == "BMI") & (input$zone == "Outside Back") & (input$comp == "Scrumhalf")) {
+            plots[[45]]
+        } else if ((input$yvar == "BMI") & (input$zone == "Outside Back") & (input$comp == "Flyhalf")) {
+            plots[[47]]
+        } else if ((input$yvar == "BMI") & (input$zone == "Outside Back") & (input$comp == "Centre")) {
+            plots[[48]]}
+
+        
+        
+#### IF//ELSE for Comparison Positions: CM ####
+
+          else if ((input$yvar == "CM") & (input$zone == "Front Row") & (input$comp == "None")){ 
+            plots[[8]]
+        } else if ((input$yvar == "CM") & (input$zone == "Front Row") & (input$comp == "Front Row")){ 
+            plots[[8]]
+        } else if ((input$yvar == "CM") & (input$zone == "Front Row") & (input$comp == "Second Row")) {
+            plots[[49]]
+        } else if ((input$yvar == "CM") & (input$zone == "Front Row") & (input$comp == "Back Row")) {
+            plots[[50]]
+        } else if ((input$yvar == "CM") & (input$zone == "Front Row") & (input$comp == "Scrumhalf")) {
+            plots[[51]]
+        } else if ((input$yvar == "CM") & (input$zone == "Front Row") & (input$comp == "Flyhalf")) {
+            plots[[52]]
+        } else if ((input$yvar == "CM") & (input$zone == "Front Row") & (input$comp == "Centre")) {
+            plots[[53]]
+        } else if ((input$yvar == "CM") & (input$zone == "Front Row") & (input$comp == "Outside Back")) {
+            plots[[54]]
+            
+
+        } else if ((input$yvar == "CM") & (input$zone == "Second Row") & (input$comp == "None")){ 
+            plots[[9]]
+        } else if ((input$yvar == "CM") & (input$zone == "Second Row") & (input$comp == "Second Row")){ 
+            plots[[9]]
+        } else if ((input$yvar == "CM") & (input$zone == "Second Row") & (input$comp == "Front Row")) {
+            plots[[49]]
+        } else if ((input$yvar == "CM") & (input$zone == "Second Row") & (input$comp == "Back Row")) {
+            plots[[55]]
+        } else if ((input$yvar == "CM") & (input$zone == "Second Row") & (input$comp == "Scrumhalf")) {
+            plots[[56]]
+        } else if ((input$yvar == "CM") & (input$zone == "Second Row") & (input$comp == "Flyhalf")) {
+            plots[[57]]
+        } else if ((input$yvar == "CM") & (input$zone == "Second Row") & (input$comp == "Centre")) {
+            plots[[58]]
+        } else if ((input$yvar == "CM") & (input$zone == "Second Row") & (input$comp == "Outside Back")) {
+            plots[[59]]
+
+        } else if ((input$yvar == "CM") & (input$zone == "Back Row") & (input$comp == "None")){ 
+            plots[[10]]
+        } else if ((input$yvar == "CM") & (input$zone == "Back Row") & (input$comp == "Back Row")){ 
+            plots[[10]]
+        } else if ((input$yvar == "CM") & (input$zone == "Back Row") & (input$comp == "Front Row")) {
+            plots[[50]]
+        } else if ((input$yvar == "CM") & (input$zone == "Back Row") & (input$comp == "Second Row")) {
+            plots[[55]] 
+        } else if ((input$yvar == "CM") & (input$zone == "Back Row") & (input$comp == "Scrumhalf")) {
+            plots[[60]]
+        } else if ((input$yvar == "CM") & (input$zone == "Back Row") & (input$comp == "Flyhalf")) {
+            plots[[61]]
+        } else if ((input$yvar == "CM") & (input$zone == "Back Row") & (input$comp == "Centre")) {
+            plots[[62]]
+        } else if ((input$yvar == "CM") & (input$zone == "Back Row") & (input$comp == "Outside Back")) {
+            plots[[63]]
+            
+        } else if ((input$yvar == "CM") & (input$zone == "Scrumhalf") & (input$comp == "None")){ 
+            plots[[11]]
+        } else if ((input$yvar == "CM") & (input$zone == "Scrumhalf") & (input$comp == "Scrumhalf")){ 
+            plots[[11]]
+        } else if ((input$yvar == "CM") & (input$zone == "Scrumhalf") & (input$comp == "Front Row")) {
+            plots[[51]]
+        } else if ((input$yvar == "CM") & (input$zone == "Scrumhalf") & (input$comp == "Second Row")) {
+            plots[[56]]
+        } else if ((input$yvar == "CM") & (input$zone == "Scrumhalf") & (input$comp == "Back Row")) {
+            plots[[60]]
+        } else if ((input$yvar == "CM") & (input$zone == "Scrumhalf") & (input$comp == "Flyhalf")) {
+            plots[[64]]
+        } else if ((input$yvar == "CM") & (input$zone == "Scrumhalf") & (input$comp == "Centre")) {
+            plots[[65]]
+        } else if ((input$yvar == "CM") & (input$zone == "Scrumhalf") & (input$comp == "Outside Back")) {
+            plots[[66]]
+
+        } else if ((input$yvar == "CM") & (input$zone == "Flyhalf") & (input$comp == "None")){ 
+            plots[[12]]
+        } else if ((input$yvar == "CM") & (input$zone == "Flyhalf") & (input$comp == "Flyhalf")){ 
+            plots[[12]]
+        } else if ((input$yvar == "CM") & (input$zone == "Flyhalf") & (input$comp == "Front Row")) {
+            plots[[52]]
+        } else if ((input$yvar == "CM") & (input$zone == "Flyhalf") & (input$comp == "Second Row")) {
+            plots[[57]]
+        } else if ((input$yvar == "CM") & (input$zone == "Flyhalf") & (input$comp == "Back Row")) {
+            plots[[61]]
+        } else if ((input$yvar == "CM") & (input$zone == "Flyhalf") & (input$comp == "Scrumhalf")) {
+            plots[[64]]
+        } else if ((input$yvar == "CM") & (input$zone == "Flyhalf") & (input$comp == "Centre")) {
+            plots[[67]]
+        } else if ((input$yvar == "CM") & (input$zone == "Flyhalf") & (input$comp == "Outside Back")) {
+            plots[[68]]
+        
+        } else if ((input$yvar == "CM") & (input$zone == "Centre") & (input$comp == "None")){ 
+            plots[[13]]
+        } else if ((input$yvar == "CM") & (input$zone == "Centre") & (input$comp == "Centre")){ 
+            plots[[13]]
+        } else if ((input$yvar == "CM") & (input$zone == "Centre") & (input$comp == "Front Row")) {
+            plots[[53]]
+        } else if ((input$yvar == "CM") & (input$zone == "Centre") & (input$comp == "Second Row")) {
+            plots[[58]] 
+        } else if ((input$yvar == "CM") & (input$zone == "Centre") & (input$comp == "Back Row")) {
+            plots[[62]]
+        } else if ((input$yvar == "CM") & (input$zone == "Centre") & (input$comp == "Scrumhalf")) {
+            plots[[65]]
+        } else if ((input$yvar == "CM") & (input$zone == "Centre") & (input$comp == "Flyhalf")) {
+            plots[[67]]
+        } else if ((input$yvar == "CM") & (input$zone == "Centre") & (input$comp == "Outside Back")) {
+            plots[[69]]
+
+            
+        } else if ((input$yvar == "CM") & (input$zone == "Outside Back") & (input$comp == "None")){ 
+            plots[[14]]
+        } else if ((input$yvar == "CM") & (input$zone == "Outside Back") & (input$comp == "Outside Back")){ 
+            plots[[14]]
+        } else if ((input$yvar == "CM") & (input$zone == "Outside Back") & (input$comp == "Front Row")) {
+            plots[[54]]
+        } else if ((input$yvar == "CM") & (input$zone == "Outside Back") & (input$comp == "Second Row")) {
+            plots[[59]] 
+        } else if ((input$yvar == "CM") & (input$zone == "Outside Back") & (input$comp == "Back Row")) {
+            plots[[63]]
+        } else if ((input$yvar == "CM") & (input$zone == "Outside Back") & (input$comp == "Scrumhalf")) {
+            plots[[66]]
+        } else if ((input$yvar == "CM") & (input$zone == "Outside Back") & (input$comp == "Flyhalf")) {
+            plots[[68]]
+        } else if ((input$yvar == "CM") & (input$zone == "Outside Back") & (input$comp == "Centre")) {
+            plots[[69]]}
+        
+        
+#### IF//ELSE for Comparison Positions: KG ####
+
+          else if ((input$yvar == "KG") & (input$zone == "Front Row") & (input$comp == "None")){ 
+            plots[[15]]
+        } else if ((input$yvar == "KG") & (input$zone == "Front Row") & (input$comp == "Front Row")){ 
+            plots[[15]]
+        } else if ((input$yvar == "KG") & (input$zone == "Front Row") & (input$comp == "Second Row")) {
+            plots[[70]]
+        } else if ((input$yvar == "KG") & (input$zone == "Front Row") & (input$comp == "Back Row")) {
+            plots[[71]]
+        } else if ((input$yvar == "KG") & (input$zone == "Front Row") & (input$comp == "Scrumhalf")) {
+            plots[[72]]
+        } else if ((input$yvar == "KG") & (input$zone == "Front Row") & (input$comp == "Flyhalf")) {
+            plots[[73]]
+        } else if ((input$yvar == "KG") & (input$zone == "Front Row") & (input$comp == "Centre")) {
+            plots[[74]]
+        } else if ((input$yvar == "KG") & (input$zone == "Front Row") & (input$comp == "Outside Back")) {
+            plots[[75]]
+            
+
+        } else if ((input$yvar == "KG") & (input$zone == "Second Row") & (input$comp == "None")){ 
+            plots[[16]]
+        } else if ((input$yvar == "KG") & (input$zone == "Second Row") & (input$comp == "Second Row")){ 
+            plots[[16]]
+        } else if ((input$yvar == "KG") & (input$zone == "Second Row") & (input$comp == "Front Row")) {
+            plots[[70]]
+        } else if ((input$yvar == "KG") & (input$zone == "Second Row") & (input$comp == "Back Row")) {
+            plots[[76]]
+        } else if ((input$yvar == "KG") & (input$zone == "Second Row") & (input$comp == "Scrumhalf")) {
+            plots[[77]]
+        } else if ((input$yvar == "KG") & (input$zone == "Second Row") & (input$comp == "Flyhalf")) {
+            plots[[78]]
+        } else if ((input$yvar == "KG") & (input$zone == "Second Row") & (input$comp == "Centre")) {
+            plots[[79]]
+        } else if ((input$yvar == "KG") & (input$zone == "Second Row") & (input$comp == "Outside Back")) {
+            plots[[80]]
+            
+        } else if ((input$yvar == "KG") & (input$zone == "Back Row") & (input$comp == "None")){ 
+            plots[[17]]
+        } else if ((input$yvar == "KG") & (input$zone == "Back Row") & (input$comp == "Back Row")){ 
+            plots[[17]]
+        } else if ((input$yvar == "KG") & (input$zone == "Back Row") & (input$comp == "Front Row")) {
+            plots[[71]]
+        } else if ((input$yvar == "KG") & (input$zone == "Back Row") & (input$comp == "Second Row")) {
+            plots[[76]]
+        } else if ((input$yvar == "KG") & (input$zone == "Back Row") & (input$comp == "Scrumhalf")) {
+            plots[[81]]
+        } else if ((input$yvar == "KG") & (input$zone == "Back Row") & (input$comp == "Flyhalf")) {
+            plots[[82]]
+        } else if ((input$yvar == "KG") & (input$zone == "Back Row") & (input$comp == "Centre")) {
+            plots[[83]]
+        } else if ((input$yvar == "KG") & (input$zone == "Back Row") & (input$comp == "Outside Back")) {
+            plots[[84]]
+            
+        } else if ((input$yvar == "KG") & (input$zone == "Scrumhalf") & (input$comp == "None")){ 
+            plots[[18]]
+        } else if ((input$yvar == "KG") & (input$zone == "Scrumhalf") & (input$comp == "Scrumhalf")){ 
+            plots[[18]]
+        } else if ((input$yvar == "KG") & (input$zone == "Scrumhalf") & (input$comp == "Front Row")) {
+            plots[[72]]
+        } else if ((input$yvar == "KG") & (input$zone == "Scrumhalf") & (input$comp == "Second Row")) {
+            plots[[77]]
+        } else if ((input$yvar == "KG") & (input$zone == "Scrumhalf") & (input$comp == "Back Row")) {
+            plots[[81]]
+        } else if ((input$yvar == "KG") & (input$zone == "Scrumhalf") & (input$comp == "Flyhalf")) {
+            plots[[85]]
+        } else if ((input$yvar == "KG") & (input$zone == "Scrumhalf") & (input$comp == "Centre")) {
+            plots[[86]]
+        } else if ((input$yvar == "KG") & (input$zone == "Scrumhalf") & (input$comp == "Outside Back")) {
+            plots[[87]]
+            
+        } else if ((input$yvar == "KG") & (input$zone == "Flyhalf") & (input$comp == "None")){ 
+            plots[[19]]
+        } else if ((input$yvar == "KG") & (input$zone == "Flyhalf") & (input$comp == "Flyhalf")){ 
+            plots[[19]]
+        } else if ((input$yvar == "KG") & (input$zone == "Flyhalf") & (input$comp == "Front Row")) {
+            plots[[73]]
+        } else if ((input$yvar == "KG") & (input$zone == "Flyhalf") & (input$comp == "Second Row")) {
+            plots[[78]]
+        } else if ((input$yvar == "KG") & (input$zone == "Flyhalf") & (input$comp == "Back Row")) {
+            plots[[82]]
+        } else if ((input$yvar == "KG") & (input$zone == "Flyhalf") & (input$comp == "Scrumhalf")) {
+            plots[[85]]
+        } else if ((input$yvar == "KG") & (input$zone == "Flyhalf") & (input$comp == "Centre")) {
+            plots[[88]]
+        } else if ((input$yvar == "KG") & (input$zone == "Flyhalf") & (input$comp == "Outside Back")) {
+            plots[[89]]
+            
+        } else if ((input$yvar == "KG") & (input$zone == "Centre") & (input$comp == "None")){ 
+            plots[[20]]
+        } else if ((input$yvar == "KG") & (input$zone == "Centre") & (input$comp == "Centre")){ 
+            plots[[20]]
+        } else if ((input$yvar == "KG") & (input$zone == "Centre") & (input$comp == "Front Row")) {
+            plots[[74]]
+        } else if ((input$yvar == "KG") & (input$zone == "Centre") & (input$comp == "Second Row")) {
+            plots[[79]]
+        } else if ((input$yvar == "KG") & (input$zone == "Centre") & (input$comp == "Back Row")) {
+            plots[[83]]
+        } else if ((input$yvar == "KG") & (input$zone == "Centre") & (input$comp == "Scrumhalf")) {
+            plots[[86]]
+        } else if ((input$yvar == "KG") & (input$zone == "Centre") & (input$comp == "Flyhalf")) {
+            plots[[88]]
+        } else if ((input$yvar == "KG") & (input$zone == "Centre") & (input$comp == "Outside Back")) {
+            plots[[90]]
+            
+        } else if ((input$yvar == "KG") & (input$zone == "Outside Back") & (input$comp == "None")){ 
+            plots[[21]]
+        } else if ((input$yvar == "KG") & (input$zone == "Outside Back") & (input$comp == "Outside Back")){ 
+            plots[[21]]
+        } else if ((input$yvar == "KG") & (input$zone == "Outside Back") & (input$comp == "Front Row")) {
+            plots[[75]]
+        } else if ((input$yvar == "KG") & (input$zone == "Outside Back") & (input$comp == "Second Row")) {
+            plots[[80]] 
+        } else if ((input$yvar == "KG") & (input$zone == "Outside Back") & (input$comp == "Back Row")) {
+            plots[[84]]
+        } else if ((input$yvar == "KG") & (input$zone == "Outside Back") & (input$comp == "Scrumhalf")) {
+            plots[[87]]
+        } else if ((input$yvar == "KG") & (input$zone == "Outside Back") & (input$comp == "Flyhalf")) {
+            plots[[89]]
+        } else if ((input$yvar == "KG") & (input$zone == "Outside Back") & (input$comp == "Centre")) {
+            plots[[90]]}
+            
+   
+    })
+        
+
+}
+
+shinyApp(ui = ui, server = server)
+
+
